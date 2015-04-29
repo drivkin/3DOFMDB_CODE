@@ -20,7 +20,7 @@
 #pragma config FPLLODIV = DIV_2
 #pragma config UPLLFSEL = FREQ_12MHZ
 #pragma config UPLLEN = OFF
-#pragma config FNOSC = SPLL // OSCILLATOR SELECTION, CHECK IT'S NOT PLL
+#pragma config FNOSC = SPLL 
 #pragma config DMTINTV = WIN_0
 #pragma config FSOSCEN = OFF
 #pragma config IESO = OFF
@@ -34,16 +34,28 @@
 #pragma config FWDTWINSZ = WINSZ_25
 #pragma config DMTCNT = DMT8
 #pragma config FDMTEN = OFF // this one is important
-//#pragma config JTAGEN = OFF
-//#pragma config ICESEL = ICS_PGx1
+
 
 
 
 #define J2_1PORT PORTBbits.RB6
 #define J2_1TRIS TRISBbits.TRISB6
-/*
- * 
- */
+
+
+
+//#define HELLOWORLD
+#define TEST_SPI_0
+
+#ifdef TEST_SPI_0
+int main(void){
+
+}
+
+
+#endif
+
+
+#ifdef HELLOWORLD
 int main(void) {
     ANSELBbits.ANSB6 = 0; // set j2 as digital output
     J2_1TRIS = 0; // set j2 as output
@@ -57,4 +69,4 @@ int main(void) {
     }
     return (EXIT_SUCCESS);
 }
-
+#endif
