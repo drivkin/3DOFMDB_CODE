@@ -32,7 +32,10 @@ void sendCharD0(char c);
  *  */
 char getCharD0(void);
 
-
+/*functions for External UART, going through J2 to the computer*/
+void initUART_Ext(void);
+void sendCharExt(char c);
+char getCharExt(void);
 
 
 #endif	/* BP_UART_LIB_H */
