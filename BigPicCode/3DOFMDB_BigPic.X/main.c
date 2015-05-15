@@ -50,7 +50,8 @@
 
 //#define HELLOWORLD
 //#define TEST_UART_0
-#define TEST_UART_EXT
+//#define TEST_UART_EXT
+#define UART_SHOOT_THROUGH
 //#define TEST_PINS
 
 void configurePeripheralBus(void){
@@ -64,6 +65,59 @@ void configurePeripheralBus(void){
     //PBCLK7: CPU, deadman timer
     //PBCLK8: EBI
 }
+
+#ifdef UART_SHOOT_THROUGH
+/* in this mode, the big pic is just a link between the external uart and the UART
+ for D2*/
+void main(void){
+    __builtin_enable_interrupts(); // enable interrupts
+    INTCONbits.MVEC = 1;
+
+    ANSELA = 0;
+    ANSELB = 0;
+    ANSELC = 0;
+    ANSELD = 0;
+    ANSELE = 0;
+    ANSELF = 0;
+    ANSELG = 0;
+
+    TRISA = 0xffffffff;
+    TRISB = 0xffffffff;
+    TRISC = 0xffffffff;
+    TRISD = 0xffffffff;
+    TRISE = 0xffffffff;
+    TRISF = 0xffffffff;
+    TRISG = 0xffffffff;
+
+    TRISBbits.TRISB7 = 0;
+    PORTBbits.RB7 = 1;
+
+    TRISAbits.TRISA10 = 0;
+    PORTAbits.RA10 = 0;
+
+    initUART_Ext();
+    initUART_D2();
+    while(1){
+    }
+}
+
+//for d2
+void __ISR(_UART3_RX_VECTOR, IPL2AUTO) UART3_RX_ISR(void){
+    sendCharExt(getCharD2());
+    PORTBbits.RB7 ^= 1;
+    IFS4bits.U3RXIF = 0;
+}
+
+//for external
+void __ISR(_UART6_RX_VECTOR, IPL2AUTO) UART6_RX_ISR(void){
+   //read and echo
+    char c = getCharExt();
+    sendCharD2(c);
+    PORTAbits.RA10 ^=1;
+    IFS5bits.U6RXIF = 0;
+}
+
+#endif
 
 #ifdef TEST_PINS
 int main(void){

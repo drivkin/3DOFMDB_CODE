@@ -32,10 +32,17 @@ void sendCharD0(char c);
  *  */
 char getCharD0(void);
 
+// functions for talking to driver 2, the one directly above the big pic, in
+//the top left corner
+void initUART_D2(void);
+void sendCharD2(char c);
+char getCharD2(void);
+
 /*functions for External UART, going through J2 to the computer*/
 void initUART_Ext(void);
 void sendCharExt(char c);
 char getCharExt(void);
+
 
 
 #endif	/* BP_UART_LIB_H */
