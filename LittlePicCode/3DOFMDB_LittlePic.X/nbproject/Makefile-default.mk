@@ -45,17 +45,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=C:/Users/Dmitriy/Documents/GitHub/3DOFMDB_CODE/LittlePicCode/3DOFMDB_LittlePic.X/main.c C:/Users/Dmitriy/Documents/GitHub/3DOFMDB_CODE/LittlePicCode/3DOFMDB_LittlePic.X/LP_UART_lib.c
+SOURCEFILES_QUOTED_IF_SPACED=C:/Users/Dmitriy/Documents/GitHub/3DOFMDB_CODE/LittlePicCode/3DOFMDB_LittlePic.X/main.c C:/Users/Dmitriy/Documents/GitHub/3DOFMDB_CODE/LittlePicCode/3DOFMDB_LittlePic.X/LP_UART_lib.c C:/Users/Dmitriy/Documents/GitHub/3DOFMDB_CODE/LittlePicCode/3DOFMDB_LittlePic.X/driver.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/_ext/1550108015/main.o ${OBJECTDIR}/_ext/1550108015/LP_UART_lib.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/_ext/1550108015/main.o.d ${OBJECTDIR}/_ext/1550108015/LP_UART_lib.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/_ext/1550108015/main.o ${OBJECTDIR}/_ext/1550108015/LP_UART_lib.o ${OBJECTDIR}/_ext/1550108015/driver.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/_ext/1550108015/main.o.d ${OBJECTDIR}/_ext/1550108015/LP_UART_lib.o.d ${OBJECTDIR}/_ext/1550108015/driver.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/_ext/1550108015/main.o ${OBJECTDIR}/_ext/1550108015/LP_UART_lib.o
+OBJECTFILES=${OBJECTDIR}/_ext/1550108015/main.o ${OBJECTDIR}/_ext/1550108015/LP_UART_lib.o ${OBJECTDIR}/_ext/1550108015/driver.o
 
 # Source Files
-SOURCEFILES=C:/Users/Dmitriy/Documents/GitHub/3DOFMDB_CODE/LittlePicCode/3DOFMDB_LittlePic.X/main.c C:/Users/Dmitriy/Documents/GitHub/3DOFMDB_CODE/LittlePicCode/3DOFMDB_LittlePic.X/LP_UART_lib.c
+SOURCEFILES=C:/Users/Dmitriy/Documents/GitHub/3DOFMDB_CODE/LittlePicCode/3DOFMDB_LittlePic.X/main.c C:/Users/Dmitriy/Documents/GitHub/3DOFMDB_CODE/LittlePicCode/3DOFMDB_LittlePic.X/LP_UART_lib.c C:/Users/Dmitriy/Documents/GitHub/3DOFMDB_CODE/LittlePicCode/3DOFMDB_LittlePic.X/driver.c
 
 
 CFLAGS=
@@ -96,6 +96,13 @@ ${OBJECTDIR}/_ext/1550108015/LP_UART_lib.o: C:/Users/Dmitriy/Documents/GitHub/3D
 	${MP_CC} $(MP_EXTRA_CC_PRE)  C:/Users/Dmitriy/Documents/GitHub/3DOFMDB_CODE/LittlePicCode/3DOFMDB_LittlePic.X/LP_UART_lib.c  -o ${OBJECTDIR}/_ext/1550108015/LP_UART_lib.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/_ext/1550108015/LP_UART_lib.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -mno-eds-warn  -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off
 	@${FIXDEPS} "${OBJECTDIR}/_ext/1550108015/LP_UART_lib.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
+${OBJECTDIR}/_ext/1550108015/driver.o: C:/Users/Dmitriy/Documents/GitHub/3DOFMDB_CODE/LittlePicCode/3DOFMDB_LittlePic.X/driver.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/_ext/1550108015" 
+	@${RM} ${OBJECTDIR}/_ext/1550108015/driver.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1550108015/driver.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  C:/Users/Dmitriy/Documents/GitHub/3DOFMDB_CODE/LittlePicCode/3DOFMDB_LittlePic.X/driver.c  -o ${OBJECTDIR}/_ext/1550108015/driver.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/_ext/1550108015/driver.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -mno-eds-warn  -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/_ext/1550108015/driver.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
 else
 ${OBJECTDIR}/_ext/1550108015/main.o: C:/Users/Dmitriy/Documents/GitHub/3DOFMDB_CODE/LittlePicCode/3DOFMDB_LittlePic.X/main.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/1550108015" 
@@ -110,6 +117,13 @@ ${OBJECTDIR}/_ext/1550108015/LP_UART_lib.o: C:/Users/Dmitriy/Documents/GitHub/3D
 	@${RM} ${OBJECTDIR}/_ext/1550108015/LP_UART_lib.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  C:/Users/Dmitriy/Documents/GitHub/3DOFMDB_CODE/LittlePicCode/3DOFMDB_LittlePic.X/LP_UART_lib.c  -o ${OBJECTDIR}/_ext/1550108015/LP_UART_lib.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/_ext/1550108015/LP_UART_lib.o.d"      -mno-eds-warn  -g -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off
 	@${FIXDEPS} "${OBJECTDIR}/_ext/1550108015/LP_UART_lib.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/_ext/1550108015/driver.o: C:/Users/Dmitriy/Documents/GitHub/3DOFMDB_CODE/LittlePicCode/3DOFMDB_LittlePic.X/driver.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/_ext/1550108015" 
+	@${RM} ${OBJECTDIR}/_ext/1550108015/driver.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1550108015/driver.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  C:/Users/Dmitriy/Documents/GitHub/3DOFMDB_CODE/LittlePicCode/3DOFMDB_LittlePic.X/driver.c  -o ${OBJECTDIR}/_ext/1550108015/driver.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/_ext/1550108015/driver.o.d"      -mno-eds-warn  -g -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/_ext/1550108015/driver.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 endif
 

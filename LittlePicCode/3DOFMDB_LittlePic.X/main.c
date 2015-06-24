@@ -10,15 +10,16 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include "LP_UART_lib.h"
+#include "driver.h"
 
 //#define HELLOWORLD
-#define TEST_UART
-
+//#define TEST_UART
+#define TEST_DRIVER
 /*
  * 
  */
 
-_FOSCSEL(FNOSC_FRC & IESO_OFF);
+_FOSCSEL(FNOSC_FRC & IESO_OFF & PWMLOCK_OFF);
 _FOSC(FCKSM_CSECMD & OSCIOFNC_ON & POSCMD_NONE);
 _FWDT(FWDTEN_OFF);
 _FICD(ICS_PGD1 & JTAGEN_OFF);
@@ -40,9 +41,39 @@ void ClockInit(void) {
     // Wait for PLL to lock
     while (OSCCONbits.LOCK != 1);
 }
-#define LEDA PORTBbits.RB2
-#define LEDB PORTAbits.RA2
-#define LEDC PORTAbits.RA3
+
+
+#ifdef TEST_DRIVER
+
+void main(void) {
+    //LEDA
+    ClockInit();
+
+    TRISA = 0xffff;
+    TRISB = 0xffff;
+
+    ANSELA = 0x0000;
+    ANSELB = 0x0000;
+    driverInit();
+    while (1) {
+//        if (HALLA) {
+//            LEDA = 1;
+//        } else {
+//            LEDA = 0;
+//        }
+//        if (HALLB) {
+//            LEDB = 1;
+//        } else {
+//            LEDB = 0;
+//        }
+//        if (HALLC) {
+//            LEDC = 1;
+//        } else {
+//            LEDC = 0;
+//        }
+    }
+}
+#endif
 
 
 #ifdef TEST_UART
@@ -70,8 +101,8 @@ void main(void) {
     LEDC = 0;
     initUART();
     while (1) {
-        if(U1STAbits.URXDA){
-            LEDB ^=1;
+        if (U1STAbits.URXDA) {
+            LEDB ^= 1;
             sendCharUART(getCharUART());
             //getCharUART();
             //sendFloatUART(1344466.53453);
