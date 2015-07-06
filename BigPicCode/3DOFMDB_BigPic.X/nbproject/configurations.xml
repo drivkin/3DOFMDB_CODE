@@ -5,6 +5,8 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>C:/Users/Dmitriy/Documents/GitHub/3DOFMDB_CODE/BigPicCode/3DOFMDB_BigPic.X/BP_UART_lib.h</itemPath>
+      <itemPath>C:/Users/Dmitriy/Documents/GitHub/3DOFMDB_CODE/BigPicCode/3DOFMDB_BigPic.X/BP_coms.h</itemPath>
+      <itemPath>C:/Users/Dmitriy/Documents/GitHub/3DOFMDB_CODE/BigPicCode/3DOFMDB_BigPic.X/config.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -15,6 +17,7 @@
                    projectFiles="true">
       <itemPath>main.c</itemPath>
       <itemPath>C:/Users/Dmitriy/Documents/GitHub/3DOFMDB_CODE/BigPicCode/3DOFMDB_BigPic.X/BP_UART_lib.c</itemPath>
+      <itemPath>C:/Users/Dmitriy/Documents/GitHub/3DOFMDB_CODE/BigPicCode/3DOFMDB_BigPic.X/BP_coms.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

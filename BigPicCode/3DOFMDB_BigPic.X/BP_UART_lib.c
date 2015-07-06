@@ -47,10 +47,9 @@ void initUART_D2(void){
 
     IEC4bits.U3RXIE = 1; // will keep this one
     IFS4bits.U3RXIF = 0; // flag is reset
-    IPC39bits.U3RXIP = 0b010; // priority 2, for now
+    IPC39bits.U3RXIP = 0b001; // priority 1, for now
     IPC39bits.U3TXIS = 0b00;
     IEC4bits.U3RXIE = 1; //enable RX interrupt
-
     U3STAbits.URXEN = 1; //enable RX
     U3STAbits.UTXEN = 1; //enable UX
     U3MODEbits.ON = 1; //enable UART3
@@ -82,17 +81,25 @@ void initUART_Ext(void) {
     U6BRG = 0b10101;
     
         //interrupts
-    IEC5bits.U6TXIE = 0; // not going to be interested in this one
+//    U6STAbits.UTXISEL = 0b01; //interrupt generated when all characters have been transmitted
+//    IEC5bits.U6TXIE = 0; // need to generate an interrupt when transmit buffer empty for DMA
+//    IFS5bits.U6TXIF = 0; // flag is reset
+//    IPC47bits.U6TXIP = 0b010; // priority 2, for now
+//    IPC47bits.U6TXIS = 0b00;
+//    IEC5bits.U6TXIE = 0; // disable TX interrupt, enable when DMA
+
+
 
     IEC5bits.U6RXIE = 1; // will keep this one
     IFS5bits.U6RXIF = 0; // flag is reset
     IPC47bits.U6RXIP = 0b010; // priority 2, for now
-    IPC47bits.U6TXIS = 0b00;
+    IPC47bits.U6RXIS = 0b00;
     IEC5bits.U6RXIE = 1; //enable RX interrupt
     
     U6STAbits.URXEN = 1; //enable RX
     U6STAbits.UTXEN = 1; //enable UX
     U6MODEbits.ON = 1; //enable UART6
+    
 
     
     //interrupts

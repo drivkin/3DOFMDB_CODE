@@ -24,6 +24,7 @@ Command:
   build/default/production/_ext/1550108015/main.o \
   build/default/production/_ext/1550108015/LP_UART_lib.o \
   build/default/production/_ext/1550108015/driver.o \
+  build/default/production/_ext/1550108015/LP_coms.o \
   --local-stack \
   --defsym=__MPLAB_BUILD=1 \
   -Tp33EP256MC502.gld.00 \
@@ -81,19 +82,20 @@ Program Memory  [Origin = 0x200, Length = 0x2adec]
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x200               0x2ba           0x417  (1047)
-.text                        0x4ba               0x4ac           0x702  (1794)
-.dinit                       0x966                 0xc            0x12  (18)
+.text                        0x4ba               0x6f8           0xa74  (2676)
+.dinit                       0xbb2                0x1a            0x27  (39)
 
-                     Total program memory used (bytes):          0xb2b  (2859) 1%
+                     Total program memory used (bytes):          0xeb2  (3762) 1%
 
 
 Data Memory  [Origin = 0x1000, Length = 0x8000]
 
 section                    address      alignment gaps    total length  (dec)
 -------                    -------      --------------    -------------------
-.ndata                      0x1000                   0             0x4  (4)
+.nbss                       0x1000                   0           0xfac  (4012)
+.ndata                      0x1fac                   0             0x6  (6)
 
-                        Total data memory used (bytes):            0x4  (4) <1%
+                        Total data memory used (bytes):          0xfb2  (4018) 12%
 
 
 Dynamic Memory Usage
@@ -101,18 +103,18 @@ Dynamic Memory Usage
 region                     address                      maximum length  (dec)
 ------                     -------                      ---------------------
 heap                             0                                   0  (0)
-stack                       0x1004                              0x7ffc  (32764)
+stack                       0x1fb2                              0x704e  (28750)
 
-                        Maximum dynamic memory (bytes):         0x7ffc  (32764)
+                        Maximum dynamic memory (bytes):         0x704e  (28750)
 
 
 External Symbols in Data Memory (by address):
 
-                    0x1000                  _u
+                    0x1fac                  _u
 
 External Symbols in Data Memory (by name):
 
-                    0x1000                  _u
+                    0x1fac                  _u
 
 External Symbols in Program Memory (by address):
 
@@ -144,20 +146,25 @@ External Symbols in Program Memory (by address):
                   0x000548                  _TrapUpdate
                   0x0007e4                  __CNInterrupt
                   0x000882                  _driverInit
-                  0x000890                  _ClockInit
-                  0x0008e4                  _main
-                  0x0008fc                  _initUART
-                  0x000922                  _sendCharUART
-                  0x00092e                  _getCharUART
-                  0x00093a                  _sendFloatUART
+                  0x000890                  _DMA_transfer
+                  0x0008d2                  _initTimestamp
+                  0x0008f4                  _PrintWithTimestamp
+                  0x000a82                  _ClockInit
+                  0x000ad6                  _main
+                  0x000b3c                  _initUART
+                  0x000b6e                  _sendCharUART
+                  0x000b7a                  _getCharUART
+                  0x000b86                  _sendFloatUART
 
 External Symbols in Program Memory (by name):
 
                   0x000516                  _CNInit
-                  0x000890                  _ClockInit
+                  0x000a82                  _ClockInit
+                  0x000890                  _DMA_transfer
                   0x000530                  _HallInit
                   0x00053c                  _LEDInit
                   0x0004ba                  _PWMInit
+                  0x0008f4                  _PrintWithTimestamp
                   0x000548                  _TrapUpdate
                   0x0007e4                  __CNInterrupt
                   0x0002d2                  __DefaultInterrupt
@@ -182,11 +189,12 @@ External Symbols in Program Memory (by name):
                   0x00022c                  __psv_init
                   0x000200                  __resetPRI
                   0x000882                  _driverInit
-                  0x00092e                  _getCharUART
-                  0x0008fc                  _initUART
-                  0x0008e4                  _main
-                  0x000922                  _sendCharUART
-                  0x00093a                  _sendFloatUART
+                  0x000b7a                  _getCharUART
+                  0x0008d2                  _initTimestamp
+                  0x000b3c                  _initUART
+                  0x000ad6                  _main
+                  0x000b6e                  _sendCharUART
+                  0x000b86                  _sendFloatUART
 
 Memory Configuration
 
@@ -212,6 +220,7 @@ Linker script and memory map
 LOAD build/default/production/_ext/1550108015/main.o
 LOAD build/default/production/_ext/1550108015/LP_UART_lib.o
 LOAD build/default/production/_ext/1550108015/driver.o
+LOAD build/default/production/_ext/1550108015/LP_coms.o
                     0x0001                  __MPLAB_BUILD = 0x1
 LOAD c:/program files (x86)/microchip/xc16/v1.24/bin/bin/../../lib/dsPIC33E\libp33EP256MC502-elf.a
 LOAD c:/program files (x86)/microchip/xc16/v1.24/bin/bin/../../lib\libfx-elf.a
@@ -334,36 +343,41 @@ __FUID3
 .comment
  *(.comment)
 
-.debug_info       0x000000       0x26ee
+.debug_info       0x000000       0x3918
  *(.debug_info)
- .debug_info      0x000000        0x63d build/default/production/_ext/1550108015/main.o
- .debug_info      0x00063d        0x8d9 build/default/production/_ext/1550108015/LP_UART_lib.o
- .debug_info      0x000f16       0x17d8 build/default/production/_ext/1550108015/driver.o
+ .debug_info      0x000000        0xb9c build/default/production/_ext/1550108015/main.o
+ .debug_info      0x000b9c        0x8d9 build/default/production/_ext/1550108015/LP_UART_lib.o
+ .debug_info      0x001475       0x17d8 build/default/production/_ext/1550108015/driver.o
+ .debug_info      0x002c4d        0xccb build/default/production/_ext/1550108015/LP_coms.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev     0x000000        0x307
+.debug_abbrev     0x000000        0x45f
  *(.debug_abbrev)
- .debug_abbrev    0x000000         0xc7 build/default/production/_ext/1550108015/main.o
- .debug_abbrev    0x0000c7        0x10b build/default/production/_ext/1550108015/LP_UART_lib.o
- .debug_abbrev    0x0001d2        0x135 build/default/production/_ext/1550108015/driver.o
+ .debug_abbrev    0x000000        0x10c build/default/production/_ext/1550108015/main.o
+ .debug_abbrev    0x00010c        0x10b build/default/production/_ext/1550108015/LP_UART_lib.o
+ .debug_abbrev    0x000217        0x135 build/default/production/_ext/1550108015/driver.o
+ .debug_abbrev    0x00034c        0x113 build/default/production/_ext/1550108015/LP_coms.o
 
-.debug_line       0x000000        0xa4f
+.debug_line       0x000000        0xe5b
  *(.debug_line)
- .debug_line      0x000000        0x17b build/default/production/_ext/1550108015/main.o
- .debug_line      0x00017b        0x1ae build/default/production/_ext/1550108015/LP_UART_lib.o
- .debug_line      0x000329        0x726 build/default/production/_ext/1550108015/driver.o
+ .debug_line      0x000000        0x241 build/default/production/_ext/1550108015/main.o
+ .debug_line      0x000241        0x1c6 build/default/production/_ext/1550108015/LP_UART_lib.o
+ .debug_line      0x000407        0x726 build/default/production/_ext/1550108015/driver.o
+ .debug_line      0x000b2d        0x32e build/default/production/_ext/1550108015/LP_coms.o
 
-.debug_frame      0x000000        0x10c
+.debug_frame      0x000000        0x150
  *(.debug_frame)
  .debug_frame     0x000000         0x34 build/default/production/_ext/1550108015/main.o
  .debug_frame     0x000034         0x54 build/default/production/_ext/1550108015/LP_UART_lib.o
  .debug_frame     0x000088         0x84 build/default/production/_ext/1550108015/driver.o
+ .debug_frame     0x00010c         0x44 build/default/production/_ext/1550108015/LP_coms.o
 
-.debug_str        0x000000        0x118
+.debug_str        0x000000        0x1a3
  *(.debug_str)
- .debug_str       0x000000         0x16 build/default/production/_ext/1550108015/main.o
- .debug_str       0x000016         0x2b build/default/production/_ext/1550108015/LP_UART_lib.o
- .debug_str       0x000041         0xd7 build/default/production/_ext/1550108015/driver.o
+ .debug_str       0x000000         0x49 build/default/production/_ext/1550108015/main.o
+ .debug_str       0x000049         0x2b build/default/production/_ext/1550108015/LP_UART_lib.o
+ .debug_str       0x000074         0xd7 build/default/production/_ext/1550108015/driver.o
+ .debug_str       0x00014b         0x58 build/default/production/_ext/1550108015/LP_coms.o
 
 .debug_loc
  *(.debug_loc)
@@ -372,7 +386,7 @@ __FUID3
  *(.debug_macinfo)
 
 .debug_pubnames
-                  0x000000        0x11d
+                  0x000000        0x169
  *(.debug_pubnames)
  .debug_pubnames
                   0x000000         0x54 build/default/production/_ext/1550108015/main.o
@@ -380,11 +394,13 @@ __FUID3
                   0x000054         0x52 build/default/production/_ext/1550108015/LP_UART_lib.o
  .debug_pubnames
                   0x0000a6         0x77 build/default/production/_ext/1550108015/driver.o
+ .debug_pubnames
+                  0x00011d         0x4c build/default/production/_ext/1550108015/LP_coms.o
 
 .debug_ranges
  *(.debug_ranges)
 
-.debug_aranges    0x000000         0x48
+.debug_aranges    0x000000         0x60
  *(.debug_aranges)
  .debug_aranges
                   0x000000         0x18 build/default/production/_ext/1550108015/main.o
@@ -392,6 +408,8 @@ __FUID3
                   0x000018         0x18 build/default/production/_ext/1550108015/LP_UART_lib.o
  .debug_aranges
                   0x000030         0x18 build/default/production/_ext/1550108015/driver.o
+ .debug_aranges
+                  0x000048         0x18 build/default/production/_ext/1550108015/LP_coms.o
 
 .ivt              0x000004        0x13e
                   0x000004          0x4 LONG 0x2d2 DEFINED (__OscillatorFail)?ABSOLUTE (__OscillatorFail):ABSOLUTE (__DefaultInterrupt)
@@ -1854,54 +1872,62 @@ LOAD default_isr
 LOAD data_init
 
 .debug_pubtypes
-                  0x000048        0x2bb
+                  0x000060        0x469
  .debug_pubtypes
-                  0x000048         0x54 build/default/production/_ext/1550108015/main.o
+                  0x000060         0xfe build/default/production/_ext/1550108015/main.o
  .debug_pubtypes
-                  0x00009c         0x94 build/default/production/_ext/1550108015/LP_UART_lib.o
+                  0x00015e         0x94 build/default/production/_ext/1550108015/LP_UART_lib.o
  .debug_pubtypes
-                  0x000130        0x1d3 build/default/production/_ext/1550108015/driver.o
+                  0x0001f2        0x1d3 build/default/production/_ext/1550108015/driver.o
+ .debug_pubtypes
+                  0x0003c5        0x104 build/default/production/_ext/1550108015/LP_coms.o
 
 __c30_signature
-                  0x000303         0x60
+                  0x0004c9         0x66
  __c30_signature
-                  0x000303          0x6 build/default/production/_ext/1550108015/main.o
+                  0x0004c9          0x6 build/default/production/_ext/1550108015/main.o
  __c30_signature
-                  0x000309          0x6 build/default/production/_ext/1550108015/LP_UART_lib.o
+                  0x0004cf          0x6 build/default/production/_ext/1550108015/LP_UART_lib.o
  __c30_signature
-                  0x00030f          0x6 build/default/production/_ext/1550108015/driver.o
+                  0x0004d5          0x6 build/default/production/_ext/1550108015/driver.o
  __c30_signature
-                  0x000315          0x6 c:/program files (x86)/microchip/xc16/v1.24/bin/bin/../../lib\libpic30-elf.a(crt0_extendedep.o)
+                  0x0004db          0x6 build/default/production/_ext/1550108015/LP_coms.o
  __c30_signature
-                  0x00031b          0x6 c:/program files (x86)/microchip/xc16/v1.24/bin/bin/../../lib\libpic30-elf.a(data_init_extendedep.o)
+                  0x0004e1          0x6 c:/program files (x86)/microchip/xc16/v1.24/bin/bin/../../lib\libpic30-elf.a(crt0_extendedep.o)
  __c30_signature
-                  0x000321          0x6 c:/program files (x86)/microchip/xc16/v1.24/bin/bin/../../lib\libm-elf.a(feqltle.epeo)
+                  0x0004e7          0x6 c:/program files (x86)/microchip/xc16/v1.24/bin/bin/../../lib\libpic30-elf.a(data_init_extendedep.o)
  __c30_signature
-                  0x000327          0x6 c:/program files (x86)/microchip/xc16/v1.24/bin/bin/../../lib\libm-elf.a(fgtge.epeo)
+                  0x0004ed          0x6 c:/program files (x86)/microchip/xc16/v1.24/bin/bin/../../lib\libm-elf.a(feqltle.epeo)
  __c30_signature
-                  0x00032d          0x6 c:/program files (x86)/microchip/xc16/v1.24/bin/bin/../../lib\libm-elf.a(fixunssfsi.epeo)
+                  0x0004f3          0x6 c:/program files (x86)/microchip/xc16/v1.24/bin/bin/../../lib\libm-elf.a(fgtge.epeo)
  __c30_signature
-                  0x000333          0x6 c:/program files (x86)/microchip/xc16/v1.24/bin/bin/../../lib\libm-elf.a(floatunsisf.epeo)
+                  0x0004f9          0x6 c:/program files (x86)/microchip/xc16/v1.24/bin/bin/../../lib\libm-elf.a(fixunssfsi.epeo)
  __c30_signature
-                  0x000339          0x6 c:/program files (x86)/microchip/xc16/v1.24/bin/bin/../../lib\libm-elf.a(funpack.epeo)
+                  0x0004ff          0x6 c:/program files (x86)/microchip/xc16/v1.24/bin/bin/../../lib\libm-elf.a(floatunsisf.epeo)
  __c30_signature
-                  0x00033f          0x6 c:/program files (x86)/microchip/xc16/v1.24/bin/bin/../../lib\libm-elf.a(mulsf3.epeo)
+                  0x000505          0x6 c:/program files (x86)/microchip/xc16/v1.24/bin/bin/../../lib\libm-elf.a(funpack.epeo)
  __c30_signature
-                  0x000345          0x6 c:/program files (x86)/microchip/xc16/v1.24/bin/bin/../../lib\libm-elf.a(fcompare.epeo)
+                  0x00050b          0x6 c:/program files (x86)/microchip/xc16/v1.24/bin/bin/../../lib\libm-elf.a(mulsf3.epeo)
  __c30_signature
-                  0x00034b          0x6 c:/program files (x86)/microchip/xc16/v1.24/bin/bin/../../lib\libm-elf.a(floatundisf.epeo)
+                  0x000511          0x6 c:/program files (x86)/microchip/xc16/v1.24/bin/bin/../../lib\libm-elf.a(fcompare.epeo)
  __c30_signature
-                  0x000351          0x6 c:/program files (x86)/microchip/xc16/v1.24/bin/bin/../../lib\libm-elf.a(fpack.epeo)
+                  0x000517          0x6 c:/program files (x86)/microchip/xc16/v1.24/bin/bin/../../lib\libm-elf.a(floatundisf.epeo)
  __c30_signature
-                  0x000357          0x6 c:/program files (x86)/microchip/xc16/v1.24/bin/bin/../../lib\libm-elf.a(funpack2.epeo)
+                  0x00051d          0x6 c:/program files (x86)/microchip/xc16/v1.24/bin/bin/../../lib\libm-elf.a(fpack.epeo)
  __c30_signature
-                  0x00035d          0x6 c:/program files (x86)/microchip/xc16/v1.24/bin/bin/../../lib\libm-elf.a(futil.epeo)
+                  0x000523          0x6 c:/program files (x86)/microchip/xc16/v1.24/bin/bin/../../lib\libm-elf.a(funpack2.epeo)
+ __c30_signature
+                  0x000529          0x6 c:/program files (x86)/microchip/xc16/v1.24/bin/bin/../../lib\libm-elf.a(futil.epeo)
 
-.ndata              0x1000          0x4
- .ndata             0x1000          0x4 build/default/production/_ext/1550108015/driver.o
-                    0x1000                  _u
+.nbss               0x1000        0xfac
+ .nbss              0x1000        0xfac build/default/production/_ext/1550108015/LP_coms.o
 
-.text             0x0004ba        0x4ac
+.ndata              0x1fac          0x6
+ .ndata             0x1fac          0x4 build/default/production/_ext/1550108015/driver.o
+                    0x1fac                  _u
+ .ndata             0x1fb0          0x2 build/default/production/_ext/1550108015/LP_coms.o
+
+.text             0x0004ba        0x6f8
  .text            0x0004ba        0x3d6 build/default/production/_ext/1550108015/driver.o
                   0x0004ba                  _PWMInit
                   0x000516                  _CNInit
@@ -1910,14 +1936,18 @@ __c30_signature
                   0x000548                  _TrapUpdate
                   0x0007e4                  __CNInterrupt
                   0x000882                  _driverInit
- .text            0x000890         0x6c build/default/production/_ext/1550108015/main.o
-                  0x000890                  _ClockInit
-                  0x0008e4                  _main
- .text            0x0008fc         0x6a build/default/production/_ext/1550108015/LP_UART_lib.o
-                  0x0008fc                  _initUART
-                  0x000922                  _sendCharUART
-                  0x00092e                  _getCharUART
-                  0x00093a                  _sendFloatUART
+ .text            0x000890        0x1f2 build/default/production/_ext/1550108015/LP_coms.o
+                  0x000890                  _DMA_transfer
+                  0x0008d2                  _initTimestamp
+                  0x0008f4                  _PrintWithTimestamp
+ .text            0x000a82         0xba build/default/production/_ext/1550108015/main.o
+                  0x000a82                  _ClockInit
+                  0x000ad6                  _main
+ .text            0x000b3c         0x76 build/default/production/_ext/1550108015/LP_UART_lib.o
+                  0x000b3c                  _initUART
+                  0x000b6e                  _sendCharUART
+                  0x000b7a                  _getCharUART
+                  0x000b86                  _sendFloatUART
 
-.dinit            0x000966          0xc
- .dinit           0x000966          0xc data_init
+.dinit            0x000bb2         0x1a
+ .dinit           0x000bb2         0x1a data_init

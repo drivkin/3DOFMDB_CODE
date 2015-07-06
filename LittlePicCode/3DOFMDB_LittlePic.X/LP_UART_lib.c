@@ -14,6 +14,13 @@ void initUART (void){
     //U1RX
     RPINR18bits.U1RXR = 0b0100000; // RPI32 which is RB0
 
+    //interrupts on every character receive (for DMA)
+    U1STAbits.URXISEL = 0b00;
+    
+    //interrupts on every send (for DMA)
+    U1STAbits.UTXISEL0 = 0;
+    U1STAbits.UTXISEL1 = 0;
+
     U1MODEbits.UARTEN = 1; // enable UART
     U1STAbits.UTXEN = 1; // ENABLE TX
 

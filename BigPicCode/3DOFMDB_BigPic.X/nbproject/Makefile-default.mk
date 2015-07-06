@@ -45,17 +45,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=main.c C:/Users/Dmitriy/Documents/GitHub/3DOFMDB_CODE/BigPicCode/3DOFMDB_BigPic.X/BP_UART_lib.c
+SOURCEFILES_QUOTED_IF_SPACED=main.c C:/Users/Dmitriy/Documents/GitHub/3DOFMDB_CODE/BigPicCode/3DOFMDB_BigPic.X/BP_UART_lib.c C:/Users/Dmitriy/Documents/GitHub/3DOFMDB_CODE/BigPicCode/3DOFMDB_BigPic.X/BP_coms.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o ${OBJECTDIR}/_ext/273117699/BP_UART_lib.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d ${OBJECTDIR}/_ext/273117699/BP_UART_lib.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o ${OBJECTDIR}/_ext/273117699/BP_UART_lib.o ${OBJECTDIR}/_ext/273117699/BP_coms.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d ${OBJECTDIR}/_ext/273117699/BP_UART_lib.o.d ${OBJECTDIR}/_ext/273117699/BP_coms.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/main.o ${OBJECTDIR}/_ext/273117699/BP_UART_lib.o
+OBJECTFILES=${OBJECTDIR}/main.o ${OBJECTDIR}/_ext/273117699/BP_UART_lib.o ${OBJECTDIR}/_ext/273117699/BP_coms.o
 
 # Source Files
-SOURCEFILES=main.c C:/Users/Dmitriy/Documents/GitHub/3DOFMDB_CODE/BigPicCode/3DOFMDB_BigPic.X/BP_UART_lib.c
+SOURCEFILES=main.c C:/Users/Dmitriy/Documents/GitHub/3DOFMDB_CODE/BigPicCode/3DOFMDB_BigPic.X/BP_UART_lib.c C:/Users/Dmitriy/Documents/GitHub/3DOFMDB_CODE/BigPicCode/3DOFMDB_BigPic.X/BP_coms.c
 
 
 CFLAGS=
@@ -106,6 +106,12 @@ ${OBJECTDIR}/_ext/273117699/BP_UART_lib.o: C:/Users/Dmitriy/Documents/GitHub/3DO
 	@${RM} ${OBJECTDIR}/_ext/273117699/BP_UART_lib.o 
 	@${FIXDEPS} "${OBJECTDIR}/_ext/273117699/BP_UART_lib.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1 -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/_ext/273117699/BP_UART_lib.o.d" -o ${OBJECTDIR}/_ext/273117699/BP_UART_lib.o C:/Users/Dmitriy/Documents/GitHub/3DOFMDB_CODE/BigPicCode/3DOFMDB_BigPic.X/BP_UART_lib.c   
 	
+${OBJECTDIR}/_ext/273117699/BP_coms.o: C:/Users/Dmitriy/Documents/GitHub/3DOFMDB_CODE/BigPicCode/3DOFMDB_BigPic.X/BP_coms.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/_ext/273117699" 
+	@${RM} ${OBJECTDIR}/_ext/273117699/BP_coms.o.d 
+	@${RM} ${OBJECTDIR}/_ext/273117699/BP_coms.o 
+	@${FIXDEPS} "${OBJECTDIR}/_ext/273117699/BP_coms.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1 -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/_ext/273117699/BP_coms.o.d" -o ${OBJECTDIR}/_ext/273117699/BP_coms.o C:/Users/Dmitriy/Documents/GitHub/3DOFMDB_CODE/BigPicCode/3DOFMDB_BigPic.X/BP_coms.c   
+	
 else
 ${OBJECTDIR}/main.o: main.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
@@ -118,6 +124,12 @@ ${OBJECTDIR}/_ext/273117699/BP_UART_lib.o: C:/Users/Dmitriy/Documents/GitHub/3DO
 	@${RM} ${OBJECTDIR}/_ext/273117699/BP_UART_lib.o.d 
 	@${RM} ${OBJECTDIR}/_ext/273117699/BP_UART_lib.o 
 	@${FIXDEPS} "${OBJECTDIR}/_ext/273117699/BP_UART_lib.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/_ext/273117699/BP_UART_lib.o.d" -o ${OBJECTDIR}/_ext/273117699/BP_UART_lib.o C:/Users/Dmitriy/Documents/GitHub/3DOFMDB_CODE/BigPicCode/3DOFMDB_BigPic.X/BP_UART_lib.c   
+	
+${OBJECTDIR}/_ext/273117699/BP_coms.o: C:/Users/Dmitriy/Documents/GitHub/3DOFMDB_CODE/BigPicCode/3DOFMDB_BigPic.X/BP_coms.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/_ext/273117699" 
+	@${RM} ${OBJECTDIR}/_ext/273117699/BP_coms.o.d 
+	@${RM} ${OBJECTDIR}/_ext/273117699/BP_coms.o 
+	@${FIXDEPS} "${OBJECTDIR}/_ext/273117699/BP_coms.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/_ext/273117699/BP_coms.o.d" -o ${OBJECTDIR}/_ext/273117699/BP_coms.o C:/Users/Dmitriy/Documents/GitHub/3DOFMDB_CODE/BigPicCode/3DOFMDB_BigPic.X/BP_coms.c   
 	
 endif
 

@@ -11,10 +11,13 @@
 #include <stdint.h>
 #include "LP_UART_lib.h"
 #include "driver.h"
+#include "LP_coms.h"
 
 //#define HELLOWORLD
 //#define TEST_UART
-#define TEST_DRIVER
+//#define TEST_DRIVER
+//#define TEST_DMA_UART
+#define TEST_PRINTER
 /*
  * 
  */
@@ -42,6 +45,89 @@ void ClockInit(void) {
     while (OSCCONbits.LOCK != 1);
 }
 
+
+
+#ifdef TEST_PRINTER
+void main(void) {
+//LEDA
+    ClockInit();
+
+    TRISA = 0xffff;
+    TRISB = 0xffff;
+
+    ANSELA = 0x0000;
+    ANSELB = 0x0000;
+
+    ANSELBbits.ANSB2 = 0;
+    TRISBbits.TRISB2 = 0;
+
+    //LEDB
+    TRISAbits.TRISA2 = 0;
+
+    //LEDC
+    TRISAbits.TRISA3 = 0;
+
+    LEDA = 0;
+    LEDB = 0;
+    LEDC = 0;
+    initUART();
+    initTimestamp();
+    //TMR5 = 0x0fff;
+    float dum[3];
+    dum[0]=10;
+    dum[1]=46.6;
+    dum[2]=22.42;
+    uint32_t b=0;
+    //for(b;b<100000;b++);
+    while (1) {
+        b = 0;
+        for(b;b<11000;b++);
+        PrintWithTimestamp(dum,3);
+    }
+}
+
+#endif
+
+#ifdef TEST_DMA_UART
+void main(void) {
+//LEDA
+    ClockInit();
+
+    TRISA = 0xffff;
+    TRISB = 0xffff;
+
+    ANSELA = 0x0000;
+    ANSELB = 0x0000;
+
+    ANSELBbits.ANSB2 = 0;
+    TRISBbits.TRISB2 = 0;
+
+    //LEDB
+    TRISAbits.TRISA2 = 0;
+
+    //LEDC
+    TRISAbits.TRISA3 = 0;
+
+    LEDA = 0;
+    LEDB = 0;
+    LEDC = 0;
+    initUART();
+
+    uint8_t dummy[100];
+    uint8_t i =0;
+    for(i;i<100;i++){
+        dummy[i]=i;
+    }
+    uint32_t b;
+    while (1) {
+        b = 0;
+        for(b;b<1000000;b++);
+        DMA_transfer(100,dummy);
+    }
+}
+
+
+#endif
 
 #ifdef TEST_DRIVER
 
